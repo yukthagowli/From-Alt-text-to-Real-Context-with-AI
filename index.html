@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Caption Generator</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2c003e);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container for the Form */
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #bb86fc;
+            text-shadow: 0 0 10px #bb86fc, 0 0 20px #bb86fc;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* File Input */
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-label {
+            background: #bb86fc;
+            color: #1a1a1a;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .file-label:hover {
+            background: #9a67ea;
+            transform: scale(1.05);
+        }
+
+        /* Select Dropdown */
+        select {
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #bb86fc;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #9a67ea;
+        }
+
+        /* Submit Button */
+        button {
+            background: #bb86fc;
+            color: #1a1a1a;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: #9a67ea;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 3D Shapes */
+        .shape {
+            position: absolute;
+            background: rgba(187, 134, 252, 0.1);
+            border: 2px solid #bb86fc;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 10%;
+            animation-duration: 8s;
+        }
+
+        .shape2 {
+            width: 100px;
+            height: 100px;
+            top: 70%;
+            left: 80%;
+            animation-duration: 10s;
+        }
+
+        .shape3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 30%;
+            animation-duration: 12s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
+    <!-- Form Container -->
+    <div class="container">
+        <h1>Image Caption Generator</h1>
+        <form action="/generate-caption" method="post" enctype="multipart/form-data">
+            <!-- File Input -->
+            <label for="image" class="file-label">Choose an Image</label>
+            <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.gif" required>
+
+            <!-- Image Type Selector -->
+            <select name="image_type">
+                <option value="general">General</option>
+                <option value="medical">Medical</option>
+                <option value="sports">Sports</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit">Generate Caption</button>
+        </form>
+    </div>
+
+    <script>
+        // Smooth animations for form elements
+        const fileLabel = document.querySelector('.file-label');
+        const select = document.querySelector('select');
+        const button = document.querySelector('button');
+
+        fileLabel.addEventListener('mouseenter', () => {
+            fileLabel.style.transform = 'scale(1.05)';
+        });
+
+        fileLabel.addEventListener('mouseleave', () => {
+            fileLabel.style.transform = 'scale(1)';
+        });
+
+        select.addEventListener('mouseenter', () => {
+            select.style.borderColor = '#9a67ea';
+        });
+
+        select.addEventListener('mouseleave', () => {
+            select.style.borderColor = '#bb86fc';
+        });
+
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'scale(1.05)';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
